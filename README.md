@@ -235,7 +235,7 @@ In the Arduino IDE, these examples can bee found under:
 - Windows: File -> Examples -> M5StickCPlus
 - Mac:     Arduino -> Examples -> M5StickCPlus
 
-In PlatformIO yu will have to navigate into the library directory to find these examples. Inside your project folder, navigate to .pio -> libdeps -> m5stick-c -> M5StickCPlus -> examples. Make sure that you have infact [installed the library to that project](#install-libraries) before looking for it.
+In PlatformIO you will have to navigate into the library directory to find these examples. Inside your project folder, navigate to .pio -> libdeps -> m5stick-c -> M5StickCPlus -> examples. Make sure that you have infact [installed the library to that project](#install-libraries) before looking for it.
 
 ### Tutorial Videos
 - [M5StickC-Plus with Arduino IDE](https://media.ed.ac.uk/media/Programming%20M5StickC%20Plus%20with%20Arduino%20IDE%202.0/1_uysgibv8)
