@@ -99,6 +99,8 @@ You may also see that you can access the Boards Manager using an icon on the lef
 
 Search for 'M5Stack', and you should now be able to see 'M5Stack by M5Stack official'. Click *INSTALL*.
 
+**Note**: some older MacBook devices may not be optimised for the latest version of the M5Stack board manager. If you are having issues later uploading code to the M5StickC-Plus, you can select an older version (2.0.5 is suggested) from the dropdown menu next to the *INSTALL* button. This may solve the problem. 
+
 ![](images/Arduino_BoardsManager.gif)
 
 #### Library Manager
@@ -153,6 +155,8 @@ Once downloaded, you can open the installer in your Downloads folder and follow 
 
 #### Install PlatformIO Extension
 Once VS Code has installed, open the application. You can then navigate to the Extensions tab on the left-hand side of the screen. From there you can search for PlatformIO and install it as an extension.
+
+**Note**: you may be prompted to install [Python](https://www.python.org/downloads/). This is a requirement for Platformio. You will most likely not need to install any other dependencies, even if prompted to do so. 
 
 ![](images/PlatformIO_Extension.gif)
 
@@ -235,7 +239,7 @@ In the Arduino IDE, these examples can bee found under:
 - Windows: File -> Examples -> M5StickCPlus
 - Mac:     Arduino -> Examples -> M5StickCPlus
 
-In PlatformIO yu will have to navigate into the library directory to find these examples. Inside your project folder, navigate to .pio -> libdeps -> m5stick-c -> M5StickCPlus -> examples. Make sure that you have infact [installed the library to that project](#install-libraries) before looking for it.
+In PlatformIO you will have to navigate into the library directory to find these examples. Inside your project folder, navigate to .pio -> libdeps -> m5stick-c -> M5StickCPlus -> examples. Make sure that you have infact [installed the library to that project](#install-libraries) before looking for it.
 
 ### Tutorial Videos
 - [M5StickC-Plus with Arduino IDE](https://media.ed.ac.uk/media/Programming%20M5StickC%20Plus%20with%20Arduino%20IDE%202.0/1_uysgibv8)
