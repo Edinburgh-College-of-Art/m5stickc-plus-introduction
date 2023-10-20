@@ -83,6 +83,7 @@ The <code>M5StickOSC.h</code> header file abstracts the operations required for 
 First we need to include some header files from the [OSC library](https://github.com/CNMAT/OSC). 
 
 ```cpp
+#include <BluetoothSerial.h>
 #include <WiFiUdp.h>
 #include <OSCMessage.h>
 #include <OSCBundle.h>

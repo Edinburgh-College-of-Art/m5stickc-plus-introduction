@@ -10,6 +10,7 @@
 // This file contains functions for sending OSC messages 
 // on M5Stick
 //=========================================================
+#include <BluetoothSerial.h>
 #include <WiFiUdp.h>
 #include <OSCMessage.h>
 #include <OSCBundle.h>
