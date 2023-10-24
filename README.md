@@ -156,7 +156,7 @@ Once downloaded, you can open the installer in your Downloads folder and follow 
 #### Install PlatformIO Extension
 Once VS Code has installed, open the application. You can then navigate to the Extensions tab on the left-hand side of the screen. From there you can search for PlatformIO and install it as an extension.
 
-**Note**: you be prompted to install [Python](https://www.python.org/downloads/). This is a requirement for Platformio. You will most likely not need to install any other dependencies, even if prompted to do so. 
+**Note**: you may be prompted to install [Python](https://www.python.org/downloads/). This is a requirement for Platformio. You will most likely not need to install any other dependencies, even if prompted to do so. 
 
 ![](images/PlatformIO_Extension.gif)
 
