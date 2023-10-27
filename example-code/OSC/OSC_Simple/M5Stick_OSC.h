@@ -1,7 +1,7 @@
 //=========================================================
 // File:   M5StickOSC.h
 //
-// Author: J Hathway 2023
+// Author: J. Hathway 2023
 //
 // Dependencies:
 //      - M5StickCPlus library (M5Stack)
@@ -10,6 +10,13 @@
 // This file contains functions for sending OSC messages 
 // on M5Stick
 //=========================================================
+
+#ifndef M5STICKC_PLUS
+#define M5STICKC_PLUS
+#define PRINT(x) M5.Lcd.print(x); Serial.print(x);
+#define PRINT_LN(x) M5.Lcd.println(x); Serial.println(x);
+#endif
+
 #include <BluetoothSerial.h>
 #include <WiFiUdp.h>
 #include <OSCMessage.h>
@@ -30,9 +37,10 @@ void sendTo(const char *_address, int _port)
     _udpAddress = _address;
     _udpPort = _port;
 
-    M5.Lcd.println("Sending to:");
-    M5.Lcd.println("IP: " + String(_udpAddress));
-    M5.Lcd.printf("Port: %i", _udpPort);
+    PRINT_LN("Sending to:")
+    PRINT_LN("IP: " + String(_udpAddress))
+    PRINT("Port: ")
+    PRINT_LN(_udpPort)
 }
 
 /// SendOscMessage<T>
