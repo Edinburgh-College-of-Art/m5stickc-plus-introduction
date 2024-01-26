@@ -126,11 +126,11 @@ e.g. <code>route /pitch /roll /yaw</code>
 
 ### Troubleshooting
 
-There are a few reasons for no data arriving, check through the following
+There are a few reasons for no data arriving, check through the following:
 
 - Is the IP address correct?
     - Try setting the IP in the Arduino sketch to your machine's IP rather than broadcasting
-- is the M5Stick Connected to WiFi?
+- Is the M5Stick Connected to WiFi?
     - The M5Stick will print its WiFi status after startup
 - Is the port correct?
     - Make sure the port specified in Arduino sketch matches the port number on the <code>udpreceive</code> object
