@@ -1,5 +1,5 @@
 //=======================================================
-// File:    AccessPointWithHeaderFile.h
+// File:    AccessPointWithHeaderFile.ino
 //
 // Author:  J. Hathway 2024
 //

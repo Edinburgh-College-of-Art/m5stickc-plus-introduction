@@ -1,5 +1,5 @@
 //=======================================================
-// File:    ConnectWithHeaderFile.h
+// File:    ConnectWithHeaderFile.ino
 //
 // Author:  J. Hathway 2024
 //
