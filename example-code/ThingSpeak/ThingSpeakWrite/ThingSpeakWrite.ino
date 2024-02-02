@@ -29,9 +29,11 @@ const char* password = "12345678";
 
 // ThingSpeak channel details
 unsigned long channelNumber = 1234567;
-const char* readAPIKey = "ABCDEFGHIJKLM";
+const char* writeAPIKey = "ABCDEFGHIJKLM";
 
 bool buzzer = true; // buzz when sent?
+
+const char* statusMessage = "Hello World"; // Status message attached to data
 //******************************************
 //==========================================
 
@@ -80,6 +82,7 @@ void loop() {
     // Print count to LCD
     M5.Lcd.fillScreen(BLACK);
     M5.Lcd.setCursor(0, 0);
+    M5.Lcd.println(statusMessage);
     M5.Lcd.print(counter);
 
     // Wait until button released
@@ -96,6 +99,7 @@ void loop() {
     // Print count to LCD
     M5.Lcd.fillScreen(BLACK);
     M5.Lcd.setCursor(0, 0);
+    M5.Lcd.println(statusMessage);
     M5.Lcd.print(counter);
 
     // Wait until button released
@@ -106,7 +110,7 @@ void loop() {
   // EVERY 15 SECONDS
   // - Send count data to ThingSpeak channel
   if (millis() - lastRequest > postingInterval) {
-    ThingSpeak.setStatus("New Count");
+    ThingSpeak.setStatus(statusMessage);
     ThingSpeak.setField(1, counter);
     ThingSpeak.writeFields(channelNumber, writeAPIKey);
 

@@ -29,7 +29,7 @@ const char* password = "12345678";
 unsigned long channelNumber = 1234567;
 const char* readAPIKey = "ABCDEFGHIJKLM";
 
-bool buzzer = true; // buzz when sent?
+bool buzzer = true;  // buzz when sent?
 //******************************************
 //==========================================
 
@@ -56,34 +56,43 @@ void setup() {
 
   // Font settings
   M5.Lcd.setRotation(1);
-  M5.Lcd.setTextSize(4);
+  M5.Lcd.setTextSize(3);
 }
 
 //=======================================================
 // LOOP
 void loop() {
-  
+
   // EVERY 15 SECONDS
   // - read from ThingSpeak channel
   // - print value to LCD
   if (millis() - lastRequest > postingInterval) {
     lastRequest = millis();
 
-    // Read value from ThingSpeak channel
-    int incomingValue = ThingSpeak.readIntField(channelNumber, 1, readAPIKey);
+    int statusCode = ThingSpeak.readMultipleFields(channelNumber, readAPIKey);
 
-    // Buzz?
-    if (buzzer) {
-      M5.Beep.tone(1000);
-      delay(250);
-      M5.Beep.mute();
+    if (statusCode == 200) {
+      // Read value from ThingSpeak channel
+      String statusMessage = ThingSpeak.getStatus();  // Status message
+      int incomingValue = ThingSpeak.readIntField(channelNumber, 1, readAPIKey);
+
+      // Buzz?
+      if (buzzer) {
+        M5.Beep.tone(1000);
+        delay(250);
+        M5.Beep.mute();
+      }
+
+      // Print to LCD
+      M5.Lcd.fillScreen(BLACK);
+      M5.Lcd.setCursor(0, 0);
+      M5.Lcd.println(statusMessage);
+      M5.Lcd.println(incomingValue);
+    } else {
+      M5.Lcd.fillScreen(BLACK);
+      M5.Lcd.setCursor(0, 0);
+      M5.Lcd.println("Err. msg not received");
     }
-
-    // Print to LCD
-    M5.Lcd.fillScreen(BLACK);
-    M5.Lcd.setCursor(0, 0);
-    M5.Lcd.println("Last value");
-    M5.Lcd.println(incomingValue);
   }
 
   delay(25);
