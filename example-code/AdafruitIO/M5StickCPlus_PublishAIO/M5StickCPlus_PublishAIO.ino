@@ -1,81 +1,125 @@
 //===================================================================
 // File:   M5StickCPlus_PublishAIO.ino
 //
-// Author: J Hathway 2023
+// Author: J.Hathway 2024
 //
-// Description: Press the home button on the M5STick to increment
-//              the counter and publish the data to AdafruitIO
+// Description: Press the home/rst buttons on the M5Stick to increase/
+//              decrease the counter and publish the data to AdafruitIO
 //
-// Dependencies:- M5StickCPlus 0.0.8 (M5Stack) 
-//              - Adafruit IO Arduino 4.2.3 (Adafruit)
+// Dependencies:- M5StickCPlus Library 0.1.0 (M5Stack) 
+//              - Adafruit IO Arduino Library 4.2.9 (Adafruit)
 //===================================================================           
 
-#include <M5StickCPlus.h>
 #include <AdafruitIO_WiFi.h>
+#include <M5StickCPlus.h>
 
-//===================================================================
-// CHANGE THESE VARIABLES
+//==========================================
+//******************************************
+// ***CHANGE THESE VARIABLES***
+// WiFi details
+const char* network = "UoE-Device";
+const char* password = "12345678";
 
-// Adafruit IO
-#define AIO_USERNAME "user"
-#define AIO_KEY "key"
-#define AIO_FEED "feed"
+// Adafriut IO details
+const char* aioUsername = "Username";
+const char* aioKey = "aio_xxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+const char* aioFeed = "MyFeed";
 
-// WiFi
-#define NETWORK_NAME "ssid"
-#define NETWORK_PASSWORD "password"
+bool buzzer = false; // buzz when sent?
+//******************************************
+//==========================================
 
-//===================================================================
-// Adafruit IO Objects
-AdafruitIO_WiFi io(AIO_USERNAME, AIO_KEY, NETWORK_NAME, NETWORK_PASSWORD);
-AdafruitIO_Feed *myFeed = io.feed(AIO_FEED);
+AdafruitIO_WiFi io(aioUsername, aioKey, network, password);
+AdafruitIO_Feed *feed = io.feed(aioFeed);
 
-// stores counter value
 int counter = 0;
 
-//===================================================================
+unsigned long postingInterval = 3000;
+unsigned long lastRequest = millis();
+
+//=======================================================
 // SETUP
 void setup() {
-  // init M5Stick
   M5.begin();
+  M5.Lcd.print("Connecting to AIO");
 
-  // connect to AIO
-  M5.Lcd.print("Connecting to Adafruit IO");
+  // Connect to io.adafruit.com
   io.connect();
 
-  // wait for connection
+  // Wait for a connection
   while (io.status() < AIO_CONNECTED) {
     M5.Lcd.print(".");
-    delay(300);
+    delay(500);
   }
 
-  // print status to LCD
   M5.Lcd.println();
   M5.Lcd.println(io.statusText());
+  delay(1000);
+
+  // Font settings
+  M5.Lcd.setTextSize(4);
+  M5.Lcd.fillScreen(BLACK);
+  M5.Lcd.setCursor(0, 0);
+  M5.Lcd.print(counter);
 }
 
-//===================================================================
+//=======================================================
 // LOOP
 void loop() {
-  // keep client connected to AIO
+  // io.run(); is required for all sketches.
+  // it should always be present at the top of your loop
+  // function. it keeps the client connected to
+  // io.adafruit.com, and processes any incoming data.
   io.run();
 
-  // if button pressed...
+  // HOME BUTTON PRESSED
+  // - add one to counter
+  // - print to LCD
   if (digitalRead(M5_BUTTON_HOME) == LOW) {
-    // increment counter
-    counter++;
+    counter += 1;
 
-    //print count
-    M5.Lcd.print("sending -> ");
-    M5.Lcd.println(counter);
+    // Print count to LCD
+    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.setCursor(0, 0);
+    M5.Lcd.print(counter);
 
-    // send counter to AIO
-    myFeed->save(counter);
+    // Wait until button released
+    while (digitalRead(M5_BUTTON_HOME) == LOW) {}
+  }
 
-    // add delay to slow frequency of messages sent to AIO
-    delay(3000);
 
-    // wait for button to be released
-    while (digitalRead(M5_BUTTON_HOME) == LOW);
+  // RST BUTTON PRESSED
+  // - add one to counter
+  // - print to LCD
+  if (digitalRead(M5_BUTTON_RST) == LOW) {
+    counter -= 1;
+
+    // Print count to LCD
+    M5.Lcd.fillScreen(BLACK);
+    M5.Lcd.setCursor(0, 0);
+    M5.Lcd.print(counter);
+
+    // Wait until button released
+    while (digitalRead(M5_BUTTON_RST) == LOW) {}
+  }
+
+
+  // EVERY 3 SECONDS
+  // - Send count AIO Feed
+  if (millis() - lastRequest > postingInterval) {
+    feed->save(counter);
+
+    // Print to LCD
+    M5.Lcd.setCursor(0, 60);
+    M5.Lcd.println("Sent");
+
+    // Buzz?
+    if (buzzer) {
+      M5.Beep.tone(1000);
+      delay(250);
+      M5.Beep.mute();
+    }
+
+    lastRequest = millis();
   }
 }
