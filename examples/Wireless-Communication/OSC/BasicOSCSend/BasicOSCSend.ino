@@ -47,7 +47,7 @@ void setup() {
 
   // Initialize WiFi/UDP
   while (!connectToWiFi()) {}
-  udp.begin(localPort);
+  udp.begin(outPort);
 
   // Print network data to LCD
   M5.Lcd.println("Ready\n");
