@@ -158,7 +158,7 @@ After this, click *Next: JSON*.
 
 2. **JSON**
 
-<code>https://api.open-meteo.com/v1/forecast?latitude=55.9521&longitude=-3.1965&current=temperature_2
+<code>https://api.open-meteo.com/v1/forecast?latitude=55.9521&longitude=-3.1965&current=temperature_2m
 </code>
 
 Copy the request URL into your browser's address bar, press enter, and copy the JSON response to your clipboard. For this example, we will use the above request URL and subsequent response, however, for your own projects you should use the API URL that you intend to use.
