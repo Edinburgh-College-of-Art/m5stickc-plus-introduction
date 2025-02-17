@@ -14,6 +14,7 @@
 - [Hello World](#hello-world)
     - [Code](#code)
     - [How it works](#how-it-works)
+- [Troubleshooting](#troubleshooting)
 
 ## The Arduino IDE
 The [Arduino IDE](https://www.arduino.cc/) is an easy-to-use programming environment, and for those of you who have previous programming experience with Arduino, it may be a familiar interface to navigate. Even for beginners, however, the Arduino IDE has a simple layout and can be quite easy to get to grips with - especially since the release of Arduino IDE 2.0.
@@ -77,7 +78,7 @@ This may take a few minutes to install.
 **Important:** Again, Mac users do NOT need to install Xcode in order to use the Arduino IDE or M5Stack board manager. You may be prompted to download it, however it is a very large download and not necessary.
 
 ### 3. Library Manager
-The last thing we need to install is the M5StickC Plus Arduino library. A library is a file (or files) that contains prewritten code that we can include in our own code. In the case of the M5StickC Plus, M5Stack has provided a very useful library that includes code that makes it very easy to use the onboard components - like the buttons and LCD display.
+The last thing we need to install is the M5StickC Plus Arduino library. A library is a file (or files) that contains pre-written code that we can include in our own code. In the case of the M5StickC Plus, M5Stack has provided a very useful library that includes code that makes it very easy to use the onboard components - like the buttons and LCD display.
 
 To install the library, navigate to the library tab (the icon that looks like a row of books) or go to *Sketch → Include Libraries → Manage Libraries*. From here, search for *“M5StickCPlus”* and install the M5StickC Plus Library by M5Stack.
  
@@ -144,3 +145,53 @@ Finally, to print text to the LCD, we can use the <code>M5.Lcd.print()</code> fu
 ```
 
 If successful, this should print out the words "Hello World" to the LCD display on your M5Stick.
+
+## Troubleshooting
+
+### M5Stick not recognized by the IDE
+
+1. Is the USB connection to your computer secure and stable? 
+    - Try again using another cable.
+    - Try again using another USB port on your computer.
+    - If you are using a USB-C adapter, try again using a different one.
+
+2. Have you correctly installed the M5Stack boards manager?
+    - Open the [Board Manager](#2-boards-manager) and check if the M5Stack boards manager is installed.
+    - Check if the M5Stack boards manager up-to-date.
+
+3. Do you have the correct USB drivers installed?
+    - If your computer still does not recognize your M5Stick, you may need to install the CP210x drivers.
+    - [Windows Drivers](https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads): select "*CP210x Windows Drivers*".
+    - [Mac OSX Drivers](https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads): select "*CP210x VCP Mac OSX Driver*".
+    - Close the Arduino IDE and open it again.
+    - If this doesn't work, you may need to restart your computer.
+
+### Compilation Error
+
+1. Are there any syntax errors in your code?
+    - Check for any spelling errors and typos.
+    - Check for any missing semicolons <code>;</code>.
+    - Check for any missing closing bracket (all open brackets must have a matching closing bracket later in the code).
+
+2. Have you linked to the correct libraries properly?
+    - Check that you have [installed the M5StickCPlus library](#3-library-manager) properly.
+    - Make sure you have included the library at the top of your sketch by using <code>#include <M5StickCPlus.h></code>.
+
+3. Have you selected the correct board?
+    - Make sure that you have selected the M5StickCPlus board from the [Boards and Port manager](#uploading-code).
+
+### Upload Error
+
+1. Is the M5Stick powered on?
+    - Hold the power button on the left side of the M5Stick down for at least 2 seconds (the screen may or may not turn on depending on what code it is currently running).
+    - Try uploading the code again.
+
+2. Have you selected the correct board and port?
+    - Make sure that you have selected the M5StickCPlus board from the [Boards and Port manager](#uploading-code).
+    - Make sure that you have selected the port with *(USB)* written next to it from the [Boards and Port manager](#uploading-code).
+    - If there are no ports marked *(USB)*, follow the instructions for when the [IDE does not recognize the M5Stick](#m5stick-not-recognised-by-the-ide).
+
+3. Do you have Python installed?
+    - On some MacOS devices you may need to install Python for the M5Stack board manager to work properly.
+    - Install Python from [Python.org](https://www.python.org/downloads/).
+    - Close the Arduino IDE and open it again.
