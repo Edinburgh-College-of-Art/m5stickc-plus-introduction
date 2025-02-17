@@ -35,7 +35,7 @@ You will then need to enter your:
 
 ![](images/AdafruitIO_AccountSetup.png)
 
-Once you have created your account, it is worth verifying your email address. Without this we won’t be able to use some of AdafriotIO's features later down the line.
+Once you have created your account, it is worth verifying your email address. Without this we won’t be able to use some of AdafruitIO's features later down the line.
 
 From here, you can select IO from the tab at the top of the page.
 
@@ -45,9 +45,9 @@ This will direct you to your AdafruitIO console. It is worth taking note of a fe
 
 ![](images/AdafruitIO_Console.png)
 
-1. Feeds - you will need feeds to send data to/retrieve data from.
-2. Dashboards - dashboards allow you to set up widgets and create a UI to visualize data from your feeds. Setting up a dashboard is optional, so we will look at these [later](#creating-a-dashboard).
-3. Actions - actions can be set up to react to data received/sent from a feed. Again, these are optional, so we will look at them [later](#actions).
+1. **Feeds** - you will need feeds to send data to/retrieve data from.
+2. **Dashboards** - dashboards allow you to set up widgets and create a UI to visualize data from your feeds. Setting up a dashboard is optional, so we will look at these [later](#creating-a-dashboard).
+3. **Actions** - actions can be set up to react to data received/sent from a feed. Again, these are optional, so we will look at them [later](#actions).
 4. **Key** - this will show you your account credentials including your username and IO key. This will be important when setting up the Arduino code.
 
 ### Creating a Feed
@@ -73,13 +73,11 @@ Now you should be ready to send data from the M5Stick.
 ### AdafruitIO Library
 Adafruit has created a library that contains code for sending/receiving data to Adafruit. You will need to install this library in your IDE.
 
-**Note**: unfortunately, as of May 2023, Adafruit has released an update to their library that causes an error when compiled. This means you will have to (for the time being) install an older version of the library.
-
 First, navigate to the library manager and search for "Adafruit IO Arduino". 
 
 ![](images/Arduino_Library.png)
 
-Make sure that you select version 4.2.3 from the dropdown menu, and select *INSTALL*. If you are asked to install extra dependencies, select *INSTALL ALL*.
+Make sure that you select the most current version from the dropdown menu, and select *INSTALL*. If you are asked to install extra dependencies, select *INSTALL ALL*.
 
 With these steps done, you should be ready to code.
 
@@ -120,7 +118,7 @@ M5.begin();
 io.connect();
 ```
 
-You can then use a while() loop to wait until you have connected. If your M5Stick does not connect when you upload your code, make sure you have entered your WiFi and AIO credentials correctly.
+You can then use a <code>while()</code> loop to wait until you have connected. If your M5Stick does not connect when you upload your code, make sure you have entered your WiFi and AIO credentials correctly.
 
 ``` cpp
 while (io.status() < AIO_CONNECTED) {
@@ -176,7 +174,7 @@ void handleMessage(AdafruitIO_Data *data) {
 }
 ```
 
-Data is received through the <code>data->value()</code> function. Incoming data is received as a string, so if you wanted to store it as a variabes, you would need to create a String variable.
+Data is received through the <code>data->value()</code> function. Incoming data is received as a string, so if you wanted to store it as a variables, you would need to create a String variable.
 
 ``` cpp
 String incomingData = data->value();
@@ -229,7 +227,7 @@ This includes:
 - toggle switches.
 - momentary buttons.
 - sliders.
-- guages.
+- gauges.
 - text boxes.
 - data streams.
 - images.
@@ -239,7 +237,7 @@ This includes:
 - remote control/number pads.
 - icons.
 - indicator lights.
-- battery guages.
+- battery gauges.
 
 You can use these blocks to customize your dashboard. 
 
@@ -260,7 +258,7 @@ To set up a new action, navigate to the Actions tab and select "New Action".
 
 Select "Reactive". You will then be given the option of what type of action you want to create. You have the option of:
 
-- Reactive - action is triggered by the daa in a feed (e.g. if data reches a certain value).
+- Reactive - action is triggered by the daa in a feed (e.g. if data reaches a certain value).
 - Scheduled - perform an action at a scheduled time.
 - Timer - perform an action a set amount of time after the feed is updated.
 
