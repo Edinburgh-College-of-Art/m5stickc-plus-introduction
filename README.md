@@ -93,7 +93,7 @@ Internal UoE use only.
 - [Sending OSC Messages](https://media.ed.ac.uk/media/Sending%20OSC%20Messages%20with%20M5StickC%20Plus/1_jm4bpf9v)
 
 ### Useful Links
-- [M5Stack Arduino Documentation](https://docs.m5stack.com/en/quick_start/m5stickc_plus/arduino)
-- [M5Stack API Documentation](https://docs.m5stack.com/en/api/stickc/system_m5stickc)
+- [M5Stack Arduino Documentation](https://docs.m5stack.com/en/arduino/arduino_ide)
+- [M5Stack API Documentation](https://docs.m5stack.com/en/arduino/m5stickc_plus/button)
 - [PlatformIO](https://platformio.org/)
 - [RandomNerdTutorials.com](https://randomnerdtutorials.com/projects-esp32/) - these tutorials are not written specifically for the M5StickC Plus but instead for ESP32 boards. Most of these tutorials should work with the M5StickC Plus but may require some modification to the example code.
