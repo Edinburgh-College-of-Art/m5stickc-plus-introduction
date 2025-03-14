@@ -36,7 +36,7 @@ void setup() {
   WiFi.mode(WIFI_AP);
     
   // start access point
-  while (!WiFi.softAP(ssid, pass)) {
+  while (!WiFi.softAP(ssid, password)) {
     M5.Lcd.println("Err: Access Point Failed");
     delay(2000);
   }
