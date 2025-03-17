@@ -40,7 +40,7 @@ Here are the main components you can find on an M5StickC Plus board:
 - IR Transmitter
 - Microphone
 - [Wi-Fi Module](/examples/Wireless-Communication/Wi-Fi/README.md)
-- Bluetooth Module
+- [Bluetooth Module](/examples/Wireless-Communication/Bluetooth/README.md)
 
 As well as these components, the M5StickC Plus has three GPIO pins, power supply pins, and a Grove port for connecting even more devices. 
 
